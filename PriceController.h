@@ -13,6 +13,7 @@ public:
     static int getPriceAtPoint(int timePoint);
     static void updatePriceList();
 private:
+    static int parsePriceToInt(std::string& string);
     static void parseData(const std::string& data);
     static inline std::vector<int> priceList_;
 };

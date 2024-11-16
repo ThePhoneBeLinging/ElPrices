@@ -39,6 +39,13 @@ void PriceController::updatePriceList()
     parseData(r.text);
 }
 
+int PriceController::parsePriceToInt(std::string& string)
+{
+    std::erase(string,',');
+    int integer = std::stoi(string);
+    return integer;
+}
+
 void PriceController::parseData(const std::string& data)
 {
     // Split by \n, then by "
@@ -78,8 +85,8 @@ void PriceController::parseData(const std::string& data)
         std::string totalString = priceLine[3];
 
         std::cout << dateString << std::endl;
-        std::cout << priceWithoutTransportString << std::endl;
-        std::cout << currentPriceOfTransportString << std::endl;
-        std::cout << totalString << std::endl;
+        std::cout << parsePriceToInt(priceWithoutTransportString) << std::endl;
+        std::cout << parsePriceToInt(currentPriceOfTransportString) << std::endl;
+        std::cout << parsePriceToInt(totalString) << std::endl;
     }
 }
