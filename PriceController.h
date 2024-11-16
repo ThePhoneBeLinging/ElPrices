@@ -11,7 +11,9 @@ class PriceController
 {
 public:
     static int getPriceAtPoint(int timePoint);
+    static void updatePriceList();
 private:
+    static void parseData(const std::string& data);
     static inline std::vector<int> priceList_;
 };
 
