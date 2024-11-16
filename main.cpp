@@ -1,5 +1,4 @@
 #include <iostream>
-#include "HTTPRequest.hpp"
 #include "cpr/api.h"
 #include "cpr/auth.h"
 #include "cpr/cprtypes.h"

@@ -9,7 +9,6 @@ FetchContent_MakeAvailable(cpr)
 set(CMAKE_CXX_STANDARD 20)
 
 add_executable(ElPrices main.cpp
-        HTTPRequest.hpp
         PriceController.cpp
         PriceController.h
         )
