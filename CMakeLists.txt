@@ -11,6 +11,8 @@ set(CMAKE_CXX_STANDARD 20)
 add_executable(ElPrices main.cpp
         PriceController.cpp
         PriceController.h
-        )
+        Date.cpp
+        Date.h
+)
 
 target_link_libraries(ElPrices PRIVATE cpr::cpr)

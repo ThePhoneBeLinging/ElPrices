@@ -11,11 +11,7 @@
 
 int PriceController::getPriceAtPoint(int timePoint)
 {
-    if (timePoint < 0 || 23 < timePoint)
-    {
-        throw std::invalid_argument("TimePoint must be between 0 and 23, but is:" + timePoint);
-    }
-    return priceList_[timePoint];
+    return dates_.back().get()->getPriceAtPoint(timePoint);
 }
 
 void PriceController::updatePriceList()
@@ -73,6 +69,7 @@ void PriceController::parseData(const std::string& data)
     bool first = true;
     for (auto priceLine : matrixStrings)
     {
+        // We skip the first line that describes the csv format.
         if (first)
         {
             first = false;

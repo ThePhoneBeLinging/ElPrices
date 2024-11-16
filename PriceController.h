@@ -5,6 +5,7 @@
 #ifndef PRICECONTROLLER_H
 #define PRICECONTROLLER_H
 #include <vector>
+#include "Date.h"
 
 
 class PriceController
@@ -15,7 +16,7 @@ public:
 private:
     static int parsePriceToInt(std::string& string);
     static void parseData(const std::string& data);
-    static inline std::vector<int> priceList_;
+    static inline std::vector<std::unique_ptr<Date>> dates_;
 };
 
 
