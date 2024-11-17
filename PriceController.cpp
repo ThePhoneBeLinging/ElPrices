@@ -9,19 +9,19 @@
 #include "cpr/api.h"
 #include "cpr/response.h"
 
-int PriceController::getPriceAtPoint(int timePoint)
+std::shared_ptr<Date> PriceController::getDateFromString(const std::string& dateString)
 {
-    return dates_.back().get()->getPriceAtPoint(timePoint);
+    return datesMap_[dateString];
 }
 
 void PriceController::updatePriceList()
 {
     std::string fromYear = "2024";
-    std::string fromMonth = "10";
-    std::string fromDay = "18";
+    std::string fromMonth = "11";
+    std::string fromDay = "16";
     std::string toYear = "2024";
-    std::string toMonth = "10";
-    std::string toDay = "19";
+    std::string toMonth = "11";
+    std::string toDay = "17";
 
     std::string dateFrom = fromYear + "-" + fromMonth + "-" + fromDay;
     std::string dateTo = toYear + "-" + toMonth + "-" + toDay;
@@ -31,15 +31,21 @@ void PriceController::updatePriceList()
     {
         throw std::invalid_argument("Status code was not 200, it was: " + r.status_code);
     }
-    std::cout << r.text << std::endl;
     parseData(r.text);
 }
 
-int PriceController::parsePriceToInt(std::string& string)
+int PriceController::parsePriceToInt(const std::string& string)
 {
-    std::erase(string,',');
-    int integer = std::stoi(string);
+    std::string newString = string;
+    std::erase(newString,',');
+    int integer = std::stoi(newString);
     return integer;
+}
+
+int PriceController::getTimeFromDateString(const std::string& dateString)
+{
+    std::string newString = dateString.substr(13,2);
+    return std::stoi(newString);
 }
 
 void PriceController::parseData(const std::string& data)
@@ -75,15 +81,20 @@ void PriceController::parseData(const std::string& data)
             first = false;
             continue;
         }
-
-        std::string dateString = priceLine[0];
+        std::string fullDateString = priceLine[0];
+        std::string dateString = fullDateString.substr(0,10);
         std::string priceWithoutTransportString = priceLine[1];
         std::string currentPriceOfTransportString = priceLine[2];
         std::string totalString = priceLine[3];
 
-        std::cout << dateString << std::endl;
-        std::cout << parsePriceToInt(priceWithoutTransportString) << std::endl;
-        std::cout << parsePriceToInt(currentPriceOfTransportString) << std::endl;
-        std::cout << parsePriceToInt(totalString) << std::endl;
+        if (not datesMap_.contains(dateString))
+        {
+            auto date = std::make_shared<Date>(dateString);
+            datesMap_[dateString] = date;
+        }
+        else
+        {
+            datesMap_[dateString]->setPriceAtPoint(getTimeFromDateString(fullDateString),parsePriceToInt(priceWithoutTransportString));
+        }
     }
 }

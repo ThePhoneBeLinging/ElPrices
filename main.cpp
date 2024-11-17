@@ -1,13 +1,9 @@
 #include <iostream>
 
-#include "PriceController.h"
-#include "cpr/api.h"
-#include "cpr/auth.h"
-#include "cpr/cprtypes.h"
-#include "cpr/parameters.h"
+#include "ElPrices.h"
 
 int main()
 {
-    PriceController::updatePriceList();
+    ElPrices();
     return 0;
 }

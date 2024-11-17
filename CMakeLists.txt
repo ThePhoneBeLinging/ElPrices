@@ -13,6 +13,8 @@ add_executable(ElPrices main.cpp
         PriceController.h
         Date.cpp
         Date.h
+        ElPrices.cpp
+        ElPrices.h
 )
 
 target_link_libraries(ElPrices PRIVATE cpr::cpr)

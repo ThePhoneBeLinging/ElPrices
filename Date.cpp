@@ -4,12 +4,23 @@
 
 #include "Date.h"
 
-Date::Date(int year, int month, int day, std::vector<int>& prices)
+#include <iostream>
+#include <sstream>
+
+Date::Date(const std::string& dateString)
 {
-    year_ = year;
-    month_ = month;
-    day_ = day;
-    priceList_ = prices;
+    std::stringstream stream(dateString);
+    std::string parsedString;
+    std::vector<std::string> strings;
+    while (getline(stream,parsedString,'.'))
+    {
+        strings.push_back(parsedString);
+    }
+    strings[2] = strings[2].substr(0,4);
+    year_ = std::stoi(strings[2]);
+    month_ = std::stoi(strings[1]);
+    day_ = std::stoi(strings[0]);
+    priceList_.reserve(23);
 }
 
 int Date::getYear() const
@@ -40,6 +51,15 @@ int Date::getDay() const
 void Date::setDay(int day)
 {
     this->day_ = day;
+}
+
+void Date::setPriceAtPoint(int time, int price)
+{
+    if (time < 0 || 23 < time)
+    {
+        throw std::invalid_argument("Time must be between 0 and 23 but was: " + time);
+    }
+    priceList_[time] = price;
 }
 
 int Date::getPriceAtPoint(int time)

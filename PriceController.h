@@ -4,19 +4,22 @@
 
 #ifndef PRICECONTROLLER_H
 #define PRICECONTROLLER_H
+#include <unordered_map>
 #include <vector>
+#include <string>
 #include "Date.h"
 
 
 class PriceController
 {
 public:
-    static int getPriceAtPoint(int timePoint);
-    static void updatePriceList();
+    std::shared_ptr<Date> getDateFromString(const std::string& dateString);
+    void updatePriceList();
 private:
-    static int parsePriceToInt(std::string& string);
-    static void parseData(const std::string& data);
-    static inline std::vector<std::unique_ptr<Date>> dates_;
+    static int parsePriceToInt(const std::string& string);
+    static int getTimeFromDateString(const std::string& dateString);
+    void parseData(const std::string& data);
+    std::unordered_map<std::string,std::shared_ptr<Date>> datesMap_;
 };
 
 

@@ -11,14 +11,14 @@
 class Date
 {
 public:
-    Date(int year, int month, int day, std::vector<int>& prices);
+    explicit Date(const std::string& dateString);
     [[nodiscard]] int getYear() const;
     void setYear(int year);
     [[nodiscard]] int getMonth() const;
     void setMonth(int month);
     [[nodiscard]] int getDay() const;
     void setDay(int day);
-
+    void setPriceAtPoint(int time, int price);
     int getPriceAtPoint(int time);
 
     bool operator==(const Date&) const;
