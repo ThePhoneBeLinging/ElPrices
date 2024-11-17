@@ -7,6 +7,8 @@
 #include <iostream>
 #include <sstream>
 
+#include "CeriusPrices.h"
+
 Date::Date(const std::string& dateString)
 {
     std::stringstream stream(dateString);
@@ -59,6 +61,7 @@ void Date::setPriceAtPoint(int time, int price)
     {
         throw std::invalid_argument("Time must be between 0 and 23 but was: " + time);
     }
+    price += CeriusPrices::getFeeAtTimePoint(time);
     priceList_[time] = price;
 }
 

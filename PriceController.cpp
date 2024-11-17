@@ -16,17 +16,25 @@ std::shared_ptr<Date> PriceController::getDateFromString(const std::string& date
 
 void PriceController::updatePriceList()
 {
-    std::string fromYear = "2024";
-    std::string fromMonth = "11";
-    std::string fromDay = "16";
+    auto now = std::chrono::system_clock::now();
+    time_t tt = std::chrono::system_clock::to_time_t(now);
+    tm local_tm = *localtime(&tt);
+    std::cout << local_tm.tm_year + 1900 << '\n';
+    std::cout << local_tm.tm_mon + 1 << '\n';
+    std::cout << local_tm.tm_mday << '\n';
+
+    std::string fromYear = std::to_string(local_tm.tm_year + 1900);
+    std::string fromMonth = std::to_string(local_tm.tm_mon + 1);
+    std::string fromDay = std::to_string(local_tm.tm_mday);
+
+
     std::string toYear = "2024";
     std::string toMonth = "11";
     std::string toDay = "17";
 
     std::string dateFrom = fromYear + "-" + fromMonth + "-" + fromDay;
     std::string dateTo = toYear + "-" + toMonth + "-" + toDay;
-
-    cpr::Response r = cpr::Get(cpr::Url{"https://andelenergi.dk/?obexport_format=csv&obexport_start=" + dateFrom+ "&obexport_end=" + dateTo + "&obexport_region=east&obexport_tax=0&obexport_product_id=1%231%23TIMEENERGI"});
+    cpr::Response r = cpr::Get(cpr::Url{"https://andelenergi.dk/?obexport_format=csv&obexport_start=" + dateFrom+ "&obexport_end=" + dateFrom + "&obexport_region=east&obexport_tax=0&obexport_product_id=1%231%23TIMEENERGI"});
     if (r.status_code != 200)
     {
         throw std::invalid_argument("Status code was not 200, it was: " + r.status_code);

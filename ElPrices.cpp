@@ -6,8 +6,10 @@
 
 #include <iostream>
 
+
 ElPrices::ElPrices()
 {
+
     priceController_ = PriceController();
     priceController_.updatePriceList();
     std::cout << priceController_.getDateFromString("16.11.2024")->getPriceAtPoint(11) << std::endl;

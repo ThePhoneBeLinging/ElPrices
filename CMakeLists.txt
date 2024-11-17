@@ -15,6 +15,8 @@ add_executable(ElPrices main.cpp
         Date.h
         ElPrices.cpp
         ElPrices.h
+        CeriusPrices.cpp
+        CeriusPrices.h
 )
 
 target_link_libraries(ElPrices PRIVATE cpr::cpr)
