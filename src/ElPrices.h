@@ -6,8 +6,8 @@
 #define ELPRICES_H
 #include <unordered_map>
 
-#include "Date.h"
-#include "PriceController.h"
+#include "Data/Date.h"
+#include "Data/PriceController.h"
 
 
 class ElPrices

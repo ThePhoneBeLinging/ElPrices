@@ -15,15 +15,7 @@ FetchContent_MakeAvailable(json)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(ElPrices main.cpp
-        PriceController.cpp
-        PriceController.h
-        Date.cpp
-        Date.h
-        ElPrices.cpp
-        ElPrices.h
-        CeriusPrices.cpp
-        CeriusPrices.h
-)
+add_subdirectory(src)
+
 target_link_libraries(ElPrices PRIVATE nlohmann_json::nlohmann_json)
 target_link_libraries(ElPrices PRIVATE cpr::cpr)
