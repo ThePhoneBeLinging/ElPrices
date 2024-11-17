@@ -6,5 +6,10 @@
 
 int CeriusPrices::getFeeAtTimePoint(int timePoint)
 {
-    return 1000;
+    // Ratio is 10000 -> 1kr
+    int totalFees = 0;
+    int electricityFee = 9513;
+    totalFees += electricityFee;
+
+    return totalFees;
 }
