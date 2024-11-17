@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include <sstream>
+#include <utility>
 
 #include "CeriusPrices.h"
 
@@ -55,17 +56,16 @@ void Date::setDay(int day)
     this->day_ = day;
 }
 
-void Date::setPriceAtPoint(int time, int price)
+void Date::setPriceAtPoint(std::shared_ptr<Price> price, int time)
 {
     if (time < 0 || 23 < time)
     {
         throw std::invalid_argument("Time must be between 0 and 23 but was: " + time);
     }
-    price += CeriusPrices::getFeeAtTimePoint(month_,time);
-    priceList_[time] = price;
+    priceList_[time] = std::move(price);
 }
 
-int Date::getPriceAtPoint(int time)
+std::shared_ptr<Price> Date::getPriceAtPoint(int time)
 {
     if (time < 0 || 23 < time)
     {

@@ -8,6 +8,7 @@
 #include <vector>
 
 #include "CeriusPrices.h"
+#include "Price.h"
 
 
 class Date
@@ -20,8 +21,8 @@ public:
     void setMonth(int month);
     [[nodiscard]] int getDay() const;
     void setDay(int day);
-    void setPriceAtPoint(int time, int price);
-    int getPriceAtPoint(int time);
+    void setPriceAtPoint(std::shared_ptr<Price> price, int time);
+    std::shared_ptr<Price> getPriceAtPoint(int time);
 
     bool operator==(const Date&) const;
 
@@ -29,7 +30,7 @@ private:
     int year_;
     int month_;
     int day_;
-    std::vector<int> priceList_;
+    std::vector<std::shared_ptr<Price>> priceList_;
 };
 
 

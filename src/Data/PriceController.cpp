@@ -103,7 +103,11 @@ void PriceController::parseData(const std::string& data)
         }
         else
         {
-            datesMap_[dateString]->setPriceAtPoint(getTimeFromDateString(fullDateString),parsePriceToInt(priceWithoutTransportString));
+            int timeInHour = getTimeFromDateString(fullDateString);
+            int priceWithoutFees = parsePriceToInt(priceWithoutTransportString);
+            int fees = CeriusPrices::getFeeAtTimePoint(datesMap_[dateString]->getMonth(),timeInHour);
+            auto price = std::make_shared<Price>(priceWithoutFees,fees);
+            datesMap_[dateString]->setPriceAtPoint(std::move(price),timeInHour);
         }
     }
 }

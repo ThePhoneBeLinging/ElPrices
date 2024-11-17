@@ -12,4 +12,6 @@ add_executable(ElPrices main.cpp
         ElPrices.h
         Data/CeriusPrices.cpp
         Data/CeriusPrices.h
+        Data/Price.cpp
+        Data/Price.h
 )
