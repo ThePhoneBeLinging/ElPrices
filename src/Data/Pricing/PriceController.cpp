@@ -11,6 +11,8 @@
 
 PriceController::PriceController()
 {
+    //TODO Should not do this every time i open the app, perhaps use historic data.
+    updatePriceList();
 }
 
 std::shared_ptr<Date> PriceController::getDateFromString(const std::string& dateString)

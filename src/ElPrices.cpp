@@ -10,6 +10,6 @@
 ElPrices::ElPrices()
 {
     priceController_ = std::make_unique<PriceController>();
-    priceController_->updatePriceList();
+    usageController_ = std::make_shared<UsageController>();
     std::cout << priceController_->getDateFromString("18.11.2024")->getPriceAtPoint(22)->getPriceWithFees() << std::endl;
 }
