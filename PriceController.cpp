@@ -11,7 +11,6 @@
 
 PriceController::PriceController()
 {
-    CeriusPrices();
 }
 
 std::shared_ptr<Date> PriceController::getDateFromString(const std::string& dateString)
@@ -49,7 +48,7 @@ int PriceController::parsePriceToInt(const std::string& string)
     std::string newString = string;
     std::erase(newString,',');
     int integer = std::stoi(newString);
-    return integer;
+    return integer * 100;
 }
 
 int PriceController::getTimeFromDateString(const std::string& dateString)

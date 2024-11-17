@@ -15,7 +15,7 @@ class ElPrices
 public:
     ElPrices();
 private:
-    PriceController priceController_;
+    std::unique_ptr<PriceController> priceController_;
 };
 
 #endif //ELPRICES_H

@@ -22,12 +22,11 @@ enum Period
 class CeriusPrices
 {
 public:
-    CeriusPrices() = default;
-    int getFeeAtTimePoint(int month, int timePoint);
+    static int getFeeAtTimePoint(int month, int timePoint);
 private:
-    int getTariffsFromPeriods(Period period, TimePeriod timePeriod);
-    TimePeriod getCurrentTimePeriod(int timePoint);
-    Period getCurentPeriod(int month);
+    static int getTariffsFromPeriods(Period period, TimePeriod timePeriod);
+    static TimePeriod getCurrentTimePeriod(int timePoint);
+    static Period getCurentPeriod(int month);
 };
 
 
