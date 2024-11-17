@@ -13,6 +13,7 @@
 class PriceController
 {
 public:
+    PriceController();
     std::shared_ptr<Date> getDateFromString(const std::string& dateString);
     void updatePriceList();
 private:

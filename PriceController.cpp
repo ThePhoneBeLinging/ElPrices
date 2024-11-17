@@ -9,6 +9,11 @@
 #include "cpr/api.h"
 #include "cpr/response.h"
 
+PriceController::PriceController()
+{
+
+}
+
 std::shared_ptr<Date> PriceController::getDateFromString(const std::string& dateString)
 {
     return datesMap_[dateString];
@@ -19,9 +24,6 @@ void PriceController::updatePriceList()
     auto now = std::chrono::system_clock::now();
     time_t tt = std::chrono::system_clock::to_time_t(now);
     tm local_tm = *localtime(&tt);
-    std::cout << local_tm.tm_year + 1900 << '\n';
-    std::cout << local_tm.tm_mon + 1 << '\n';
-    std::cout << local_tm.tm_mday << '\n';
 
     std::string fromYear = std::to_string(local_tm.tm_year + 1900);
     std::string fromMonth = std::to_string(local_tm.tm_mon + 1);
