@@ -7,6 +7,8 @@
 #include <string>
 #include <vector>
 
+#include "CeriusPrices.h"
+
 
 class Date
 {
@@ -28,6 +30,7 @@ private:
     int month_;
     int day_;
     std::vector<int> priceList_;
+    CeriusPrices ceriusPrices_;
 };
 
 

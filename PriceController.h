@@ -7,6 +7,8 @@
 #include <unordered_map>
 #include <vector>
 #include <string>
+
+#include "CeriusPrices.h"
 #include "Date.h"
 
 
@@ -21,6 +23,7 @@ private:
     static int getTimeFromDateString(const std::string& dateString);
     void parseData(const std::string& data);
     std::unordered_map<std::string,std::shared_ptr<Date>> datesMap_;
+    CeriusPrices ceriusPrices_;
 };
 
 

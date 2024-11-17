@@ -11,7 +11,7 @@
 
 PriceController::PriceController()
 {
-
+    CeriusPrices();
 }
 
 std::shared_ptr<Date> PriceController::getDateFromString(const std::string& dateString)

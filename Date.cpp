@@ -23,6 +23,7 @@ Date::Date(const std::string& dateString)
     month_ = std::stoi(strings[1]);
     day_ = std::stoi(strings[0]);
     priceList_.reserve(23);
+    ceriusPrices_ = CeriusPrices();
 }
 
 int Date::getYear() const
@@ -61,7 +62,7 @@ void Date::setPriceAtPoint(int time, int price)
     {
         throw std::invalid_argument("Time must be between 0 and 23 but was: " + time);
     }
-    price += CeriusPrices::getFeeAtTimePoint(time);
+    price += ceriusPrices_.getFeeAtTimePoint(month_,time);
     priceList_[time] = price;
 }
 
