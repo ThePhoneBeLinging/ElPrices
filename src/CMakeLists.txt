@@ -4,14 +4,14 @@ project(ElPrices)
 set(CMAKE_CXX_STANDARD 20)
 
 add_executable(ElPrices main.cpp
-        Data/PriceController.cpp
-        Data/PriceController.h
-        Data/Date.cpp
-        Data/Date.h
+        Data/Pricing/PriceController.cpp
+        Data/Pricing/PriceController.h
+        Data/Pricing/Date.cpp
+        Data/Pricing/Date.h
         ElPrices.cpp
         ElPrices.h
-        Data/CeriusPrices.cpp
-        Data/CeriusPrices.h
-        Data/Price.cpp
-        Data/Price.h
+        Data/Pricing/CeriusPrices.cpp
+        Data/Pricing/CeriusPrices.h
+        Data/Pricing/Price.cpp
+        Data/Pricing/Price.h
 )

@@ -5,7 +5,7 @@
 #ifndef ELPRICES_H
 #define ELPRICES_H
 
-#include "Data/PriceController.h"
+#include "Data/Pricing/PriceController.h"
 
 
 class ElPrices
