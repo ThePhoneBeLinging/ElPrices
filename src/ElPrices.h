@@ -5,6 +5,7 @@
 #ifndef ELPRICES_H
 #define ELPRICES_H
 
+#include <memory>
 #include "Data/Pricing/PriceController.h"
 #include "Data/Usage/UsageController.h"
 

@@ -4,6 +4,7 @@
 
 #ifndef DATE_H
 #define DATE_H
+#include <memory>
 #include <string>
 #include <vector>
 
