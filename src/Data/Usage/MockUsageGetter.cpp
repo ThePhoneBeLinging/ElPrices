@@ -30,6 +30,8 @@ void MockUsageGetter::mockData()
 {
     while (keepRunningBool_)
     {
+        //TODO Does not quit gracefully because we might get stuck here.
+        //But as this is for testing, i wont do anything for now
         std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(dist_(mt_) * 1000)));
         ElPrices::wattHourUsed();
     }
