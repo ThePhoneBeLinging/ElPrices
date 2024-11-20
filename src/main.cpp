@@ -4,6 +4,6 @@
 
 int main()
 {
-    ElPrices();
+    ElPrices::launch();
     return 0;
 }

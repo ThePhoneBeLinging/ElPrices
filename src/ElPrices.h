@@ -15,11 +15,12 @@
 class ElPrices
 {
 public:
-    ElPrices();
+    static void launch();
+    static void update(float deltaTime);
 private:
-    std::unique_ptr<PriceController> priceController_;
-    std::shared_ptr<UsageController> usageController_;
-    std::shared_ptr<EngineBase> engineBase_;
+    static inline std::unique_ptr<PriceController> priceController_;
+    static inline std::shared_ptr<UsageController> usageController_;
+    static inline std::shared_ptr<EngineBase> engineBase_;
 };
 
 #endif //ELPRICES_H
