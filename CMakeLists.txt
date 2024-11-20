@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.28)
 project(ElPrices)
 
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/Resources
+        DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
 include(FetchContent)
 FetchContent_Declare(cpr GIT_REPOSITORY https://github.com/libcpr/cpr.git
         GIT_TAG bb01c8db702fb41e5497aee9c0559ddf4bf13749)

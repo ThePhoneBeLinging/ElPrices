@@ -20,6 +20,7 @@ public:
     static void wattHourUsed();
     static void update(float deltaTime);
 private:
+    static inline std::vector<std::shared_ptr<DrawAble>> priceDrawAbles_;
     static inline std::unique_ptr<PriceController> priceController_;
     static inline std::shared_ptr<UsageController> usageController_;
     static inline std::shared_ptr<EngineBase> engineBase_;
