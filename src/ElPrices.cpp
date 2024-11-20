@@ -9,7 +9,9 @@
 
 ElPrices::ElPrices()
 {
-    priceController_ = std::make_unique<PriceController>();
+    engineBase_ = std::make_shared<EngineBase>();
+    engineBase_->launch();
+    //priceController_ = std::make_unique<PriceController>();
     usageController_ = std::make_shared<UsageController>();
     //std::cout << priceController_->getDateFromString("18.11.2024")->getPriceAtPoint(22)->getPriceWithFees() << std::endl;
 }

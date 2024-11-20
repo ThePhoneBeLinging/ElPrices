@@ -21,3 +21,4 @@ add_subdirectory(dependencies/EngineBase)
 
 target_link_libraries(ElPrices PRIVATE nlohmann_json::nlohmann_json)
 target_link_libraries(ElPrices PRIVATE cpr::cpr)
+target_link_libraries(ElPrices PRIVATE EngineBase)
