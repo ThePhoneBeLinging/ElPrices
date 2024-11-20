@@ -16,6 +16,8 @@ FetchContent_MakeAvailable(json)
 set(CMAKE_CXX_STANDARD 20)
 
 add_subdirectory(src)
+add_subdirectory(dependencies/Utility)
+add_subdirectory(dependencies/EngineBase)
 
 target_link_libraries(ElPrices PRIVATE nlohmann_json::nlohmann_json)
 target_link_libraries(ElPrices PRIVATE cpr::cpr)
