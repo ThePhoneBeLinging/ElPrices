@@ -4,6 +4,7 @@
 
 #ifndef MOCKUSAGEGETTER_H
 #define MOCKUSAGEGETTER_H
+#include <random>
 #include <thread>
 
 
@@ -16,6 +17,8 @@ private:
     void mockData();
     std::thread dataThread_;
     std::atomic_bool keepRunningBool_;
+    std::mt19937 mt_;
+    std::uniform_real_distribution<double> dist_;
 };
 
 

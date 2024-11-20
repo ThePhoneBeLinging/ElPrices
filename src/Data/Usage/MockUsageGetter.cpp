@@ -12,6 +12,11 @@
 MockUsageGetter::MockUsageGetter()
 {
     keepRunningBool_ = true;
+    std::random_device rd;
+    std::mt19937 mt(rd());
+    std::uniform_real_distribution<double> dist(1.0, 8.0);
+    mt_ = mt;
+    dist_ = dist;
     dataThread_ = std::thread(&MockUsageGetter::mockData,this);
 }
 
@@ -25,7 +30,7 @@ void MockUsageGetter::mockData()
 {
     while (keepRunningBool_)
     {
-        std::this_thread::sleep_for(std::chrono::seconds(5));
+        std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(dist_(mt_) * 1000)));
         ElPrices::wattHourUsed();
     }
 }
