@@ -11,11 +11,12 @@ class UsageController
 {
 public:
     UsageController();
-    int getWattHoursUsed();
     void wattHourUsed();
+    [[nodiscard]] double getUsage();
 private:
     std::mutex mutex_;
-    int wattHoursUsed_;
+    std::chrono::time_point<std::chrono::system_clock> lastWattHourUsed_;
+    double averageWattSinceLastPing;
 };
 
 
