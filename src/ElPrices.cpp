@@ -20,6 +20,6 @@ void ElPrices::launch()
 
 void ElPrices::update(float deltaTime)
 {
-    std::this_thread::sleep_for(std::chrono::seconds(2));
     std::cout << "UPDATE" << std::endl;
+    std::this_thread::sleep_for(std::chrono::seconds(2));
 }
