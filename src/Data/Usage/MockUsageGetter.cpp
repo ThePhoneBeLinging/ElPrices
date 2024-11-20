@@ -7,6 +7,8 @@
 #include <iostream>
 #include <thread>
 
+#include "../../ElPrices.h"
+
 MockUsageGetter::MockUsageGetter()
 {
     keepRunningBool_ = true;
@@ -23,6 +25,7 @@ void MockUsageGetter::mockData()
 {
     while (keepRunningBool_)
     {
-        std::cout << "DEAN" << std::endl;
+        std::this_thread::sleep_for(std::chrono::seconds(5));
+        ElPrices::wattHourUsed();
     }
 }

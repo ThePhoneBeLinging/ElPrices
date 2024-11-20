@@ -17,6 +17,7 @@ class ElPrices
 {
 public:
     static void launch();
+    static void wattHourUsed();
     static void update(float deltaTime);
 private:
     static inline std::unique_ptr<PriceController> priceController_;

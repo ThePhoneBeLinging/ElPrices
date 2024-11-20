@@ -21,6 +21,13 @@ void ElPrices::launch()
     engineBase_->launch();
 }
 
+void ElPrices::wattHourUsed()
+{
+    std::cout << "Watt hour used" << std::endl;
+    usageController_->wattHourUsed();
+    std::cout << "Average usage: " + std::to_string(usageController_->getUsage()) << std::endl;
+}
+
 void ElPrices::update(float deltaTime)
 {
     std::this_thread::sleep_for(std::chrono::seconds(2));

@@ -14,7 +14,6 @@ public:
     void wattHourUsed();
     [[nodiscard]] double getUsage();
 private:
-    std::mutex mutex_;
     std::chrono::time_point<std::chrono::system_clock> lastWattHourUsed_;
     double averageWattSinceLastPing;
 };
