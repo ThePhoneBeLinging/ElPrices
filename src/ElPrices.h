@@ -7,8 +7,9 @@
 
 #include <memory>
 
-#include "../dependencies/EngineBase/src/include/EngineBase/EngineBase.h"
+#include "EngineBase/EngineBase.h"
 #include "Data/Pricing/PriceController.h"
+#include "Data/Usage/MockUsageGetter.h"
 #include "Data/Usage/UsageController.h"
 
 
@@ -21,6 +22,7 @@ private:
     static inline std::unique_ptr<PriceController> priceController_;
     static inline std::shared_ptr<UsageController> usageController_;
     static inline std::shared_ptr<EngineBase> engineBase_;
+    static inline std::unique_ptr<MockUsageGetter> mockUsageGetter_;
 };
 
 #endif //ELPRICES_H

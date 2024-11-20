@@ -7,11 +7,14 @@
 #include <iostream>
 #include <thread>
 
+#include "Data/Usage/MockUsageGetter.h"
+
 
 void ElPrices::launch()
 {
     engineBase_ = std::make_shared<EngineBase>();
-    engineBase_->registerUpdateFunction(update);
+    mockUsageGetter_ = std::make_unique<MockUsageGetter>();
+    //engineBase_->registerUpdateFunction(update);
     //priceController_ = std::make_unique<PriceController>();
     usageController_ = std::make_shared<UsageController>();
     //std::cout << priceController_->getDateFromString("18.11.2024")->getPriceAtPoint(22)->getPriceWithFees() << std::endl;
@@ -20,6 +23,6 @@ void ElPrices::launch()
 
 void ElPrices::update(float deltaTime)
 {
-    std::cout << "UPDATE" << std::endl;
     std::this_thread::sleep_for(std::chrono::seconds(2));
+    std::cout << "UPDATE" << std::endl;
 }

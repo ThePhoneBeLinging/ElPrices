@@ -16,4 +16,8 @@ add_executable(ElPrices main.cpp
         Data/Pricing/Price.h
         Data/Usage/UsageController.cpp
         Data/Usage/UsageController.h
+        Data/TimeUtil.cpp
+        Data/TimeUtil.h
+        Data/Usage/MockUsageGetter.cpp
+        Data/Usage/MockUsageGetter.h
 )

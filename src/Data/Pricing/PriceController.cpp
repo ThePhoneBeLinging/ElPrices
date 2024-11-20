@@ -6,6 +6,7 @@
 
 #include <iostream>
 
+#include "../TimeUtil.h"
 #include "cpr/api.h"
 #include "cpr/response.h"
 
@@ -22,12 +23,10 @@ std::shared_ptr<Date> PriceController::getDateFromString(const std::string& date
 
 void PriceController::updatePriceList()
 {
-    auto now = std::chrono::system_clock::now();
-    time_t tt = std::chrono::system_clock::to_time_t(now);
-    tm local_tm = *localtime(&tt);
+    auto local_tm = TimeUtil::getCurrentTime();
 
-    std::string fromYear = std::to_string(local_tm.tm_year + 1900);
-    std::string fromMonth = std::to_string(local_tm.tm_mon + 1);
+    std::string fromYear = std::to_string(local_tm.tm_year);
+    std::string fromMonth = std::to_string(local_tm.tm_mon);
     std::string fromDay = std::to_string(local_tm.tm_mday);
 
 
