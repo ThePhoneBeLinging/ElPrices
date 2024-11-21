@@ -16,7 +16,7 @@ void ElPrices::launch()
     engineBase_->getGraphicsLibrary()->loadTexture("../Resources/number1.png");
     currentPrice_ = std::make_shared<Text>("2.43 KR", 525,150,50);
     engineBase_->registerText(currentPrice_);
-    //priceController_ = std::make_unique<PriceController>();
+    priceController_ = std::make_unique<PriceController>();
     //std::cout << priceController_->getDateFromString("18.11.2024")->getPriceAtPoint(22)->getPriceWithFees() << std::endl;
     mockUsageGetter_ = std::make_unique<MockUsageGetter>();
     engineBase_->launch();

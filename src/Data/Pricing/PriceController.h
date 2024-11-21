@@ -20,6 +20,8 @@ private:
     static int parsePriceToInt(const std::string& string);
     static int getTimeFromDateString(const std::string& dateString);
     void parseData(const std::string& data);
+    void saveData();
+    void loadData();
     std::unordered_map<std::string,std::shared_ptr<Date>> datesMap_;
 };
 

@@ -23,7 +23,7 @@ Date::Date(const std::string& dateString)
     year_ = std::stoi(strings[2]);
     month_ = std::stoi(strings[1]);
     day_ = std::stoi(strings[0]);
-    priceList_.reserve(23);
+    priceList_.resize(23);
 }
 
 int Date::getYear() const

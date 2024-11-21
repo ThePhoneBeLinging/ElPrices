@@ -3,17 +3,20 @@
 //
 
 #include "PriceController.h"
-
+#include "nlohmann/json.hpp"
 #include <iostream>
 
+#include "CeriusPrices.h"
 #include "../TimeUtil.h"
+#include "../../../dependencies/Utility/src/include/Utility/Utility.h"
 #include "cpr/api.h"
 #include "cpr/response.h"
 
 PriceController::PriceController()
 {
-    //TODO Should not do this every time i open the app, perhaps use historic data.
-    updatePriceList();
+    loadData();
+    //updatePriceList();
+    //saveData();
 }
 
 std::shared_ptr<Date> PriceController::getDateFromString(const std::string& dateString)
@@ -39,7 +42,7 @@ void PriceController::updatePriceList()
     cpr::Response r = cpr::Get(cpr::Url{"https://andelenergi.dk/?obexport_format=csv&obexport_start=" + dateFrom+ "&obexport_end=" + dateFrom + "&obexport_region=east&obexport_tax=0&obexport_product_id=1%231%23TIMEENERGI"});
     if (r.status_code != 200)
     {
-        throw std::invalid_argument("Status code was not 200, it was: " + r.status_code);
+        throw std::invalid_argument("Status code was not 200, it was: " + std::to_string(r.status_code));
     }
     parseData(r.text);
 }
@@ -110,5 +113,39 @@ void PriceController::parseData(const std::string& data)
             auto price = std::make_shared<Price>(priceWithoutFees,fees);
             datesMap_[dateString]->setPriceAtPoint(std::move(price),timeInHour);
         }
+    }
+}
+
+void PriceController::saveData()
+{
+    std::string dataToWrite;
+    for (const auto& thing : datesMap_)
+    {
+        nlohmann::json jsonObject;
+        jsonObject["DateString"] = thing.first;
+        for (int i = 0; i < 24; i++)
+        {
+            auto price = thing.second->getPriceAtPoint(i);
+            if (price == nullptr)
+            {
+                continue;
+            }
+            jsonObject["Date"]["TimePoint " + std::to_string(i)] = price->toJSON();
+
+        }
+        dataToWrite += to_string(jsonObject);
+        dataToWrite += "\n";
+    }
+    Utility::writeToFile("../../SAVEDDATEDATA.txt",dataToWrite);
+}
+
+void PriceController::loadData()
+{
+    std::string readData = Utility::readFromFile("../../SAVEDDATEDATA.txt");
+    std::stringstream stringstream(readData);
+    std::string line;
+    while (getline(stringstream,line,'\n'))
+    {
+        auto data = nlohmann::json::parse(line);
     }
 }

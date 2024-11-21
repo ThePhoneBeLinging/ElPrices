@@ -4,8 +4,18 @@
 
 #include "Price.h"
 
+#include <nlohmann/json.hpp>
+
 Price::Price(int priceWithotFees, int fees) : priceWithoutFees_(priceWithotFees), fees_(fees)
 {
+}
+
+nlohmann::json Price::toJSON()
+{
+    nlohmann::json object;
+    object["PriceWithoutFees"] = priceWithoutFees_;
+    object["Fees"] = fees_;
+    return object;
 }
 
 int Price::getPriceWithoutFees() const
