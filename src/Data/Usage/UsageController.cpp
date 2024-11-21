@@ -6,6 +6,7 @@
 
 UsageController::UsageController() : averageWattSinceLastPing(0)
 {
+    lastWattHourUsed_ = std::chrono::system_clock::now();
 }
 
 void UsageController::wattHourUsed()
