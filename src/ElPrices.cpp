@@ -21,7 +21,7 @@ void ElPrices::launch()
         priceDrawAbles_.push_back(std::make_shared<DrawAble>());
         priceDrawAbles_.back()->setHeight(50);
         priceDrawAbles_.back()->setWidth(50);
-        priceDrawAbles_.back()->setTextureIndex(2);
+        priceDrawAbles_.back()->setTextureIndex(1);
 
         priceDrawAbles_.back()->setX(x);
         priceDrawAbles_.back()->setY(250);
