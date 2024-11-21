@@ -20,6 +20,7 @@ public:
     void setMonth(int month);
     [[nodiscard]] int getDay() const;
     void setDay(int day);
+    bool isDateFilledWithPrices() const;
     void setPriceAtPoint(std::shared_ptr<Price> price, int time);
     std::shared_ptr<Price> getPriceAtPoint(int time);
 

@@ -56,6 +56,19 @@ void Date::setDay(int day)
     this->day_ = day;
 }
 
+bool Date::isDateFilledWithPrices() const
+{
+    int amount = 0;
+    for (const auto& price : priceList_)
+    {
+        if (price != nullptr)
+        {
+            amount++;
+        }
+    }
+    return amount == 23;
+}
+
 void Date::setPriceAtPoint(std::shared_ptr<Price> price, int time)
 {
     if (time < 0 || 23 < time)

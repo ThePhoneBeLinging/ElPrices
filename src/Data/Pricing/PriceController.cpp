@@ -15,8 +15,7 @@
 PriceController::PriceController()
 {
     loadData();
-    //updatePriceList();
-    //saveData();
+    updatePriceList();
 }
 
 std::shared_ptr<Date> PriceController::getDateFromString(const std::string& dateString)
@@ -33,12 +32,19 @@ void PriceController::updatePriceList()
     std::string fromDay = std::to_string(local_tm.tm_mday);
 
 
+
     std::string toYear = "2024";
     std::string toMonth = "11";
     std::string toDay = "17";
 
     std::string dateFrom = fromYear + "-" + fromMonth + "-" + fromDay;
     std::string dateTo = toYear + "-" + toMonth + "-" + toDay;
+
+    if (datesMap_.contains(fromDay + "." + fromMonth + "." + fromYear))
+    {
+        return;
+    }
+
     cpr::Response r = cpr::Get(cpr::Url{"https://andelenergi.dk/?obexport_format=csv&obexport_start=" + dateFrom+ "&obexport_end=" + dateFrom + "&obexport_region=east&obexport_tax=0&obexport_product_id=1%231%23TIMEENERGI"});
     if (r.status_code != 200)
     {
@@ -146,6 +152,13 @@ void PriceController::loadData()
     std::string line;
     while (getline(stringstream,line,'\n'))
     {
-        auto data = nlohmann::json::parse(line);
+        auto dateJSON = nlohmann::json::parse(line);
+        auto date = std::make_shared<Date>(dateJSON["DateString"]);
+        for (int i = 0; i < 23; i++)
+        {
+            auto price = std::make_shared<Price>(dateJSON["Date"]["TimePoint " + std::to_string(i)]["PriceWithoutFees"],dateJSON["Date"]["TimePoint " + std::to_string(i)]["Fees"]);
+            date->setPriceAtPoint(price,i);
+        }
+        datesMap_[dateJSON["DateString"]] = date;
     }
 }
