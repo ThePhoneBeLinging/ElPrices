@@ -13,7 +13,7 @@
 class MockUsageGetter
 {
 public:
-    MockUsageGetter(std::shared_ptr<UsageController> usageController);
+    explicit MockUsageGetter(std::shared_ptr<UsageController> usageController);
     ~MockUsageGetter();
 private:
     void mockData();
