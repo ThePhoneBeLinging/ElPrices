@@ -6,12 +6,14 @@
 
 #include <iostream>
 #include <thread>
+#include <utility>
 
 #include "../../ElPrices.h"
 
-MockUsageGetter::MockUsageGetter()
+MockUsageGetter::MockUsageGetter(std::shared_ptr<UsageController> usageController)
 {
     keepRunningBool_ = true;
+    usageController_ = std::move(usageController);
     std::random_device rd;
     std::mt19937 mt(rd());
     std::uniform_real_distribution<double> dist(1.0, 8.0);
@@ -33,6 +35,6 @@ void MockUsageGetter::mockData()
         //TODO Does not quit gracefully because we might get stuck here.
         //But as this is for testing, i wont do anything for now
         std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(dist_(mt_) * 1000)));
-        ElPrices::wattHourUsed();
+        usageController_->wattHourUsed();
     }
 }

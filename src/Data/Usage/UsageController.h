@@ -5,17 +5,17 @@
 #ifndef USAGECONTROLLER_H
 #define USAGECONTROLLER_H
 #include <mutex>
+#include <EngineBase/Text.h>
 
 
 class UsageController
 {
 public:
-    UsageController();
+    explicit UsageController(std::shared_ptr<Text> text);
     void wattHourUsed();
-    [[nodiscard]] double getUsage();
 private:
+    std::shared_ptr<Text> text_;
     std::chrono::time_point<std::chrono::system_clock> lastWattHourUsed_;
-    double averageWattSinceLastPing;
 };
 
 
