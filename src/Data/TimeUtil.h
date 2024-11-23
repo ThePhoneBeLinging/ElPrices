@@ -4,6 +4,7 @@
 
 #ifndef TIMEUTIL_H
 #define TIMEUTIL_H
+#include <chrono>
 #include <ctime>
 
 
@@ -11,7 +12,9 @@ class TimeUtil
 {
 public:
     static tm getCurrentTime();
-
+    static tm getTommorowTime();
+private:
+    static tm timeToTM(std::chrono::time_point<std::chrono::system_clock> time);
 };
 
 
