@@ -7,14 +7,17 @@
 #include <mutex>
 #include <EngineBase/Text.h>
 
+#include "../Pricing/PriceController.h"
+
 
 class UsageController
 {
 public:
-    explicit UsageController(std::shared_ptr<Text> text);
+    UsageController(std::shared_ptr<Text> text, std::shared_ptr<PriceController> priceController);
     void wattHourUsed();
 private:
     std::shared_ptr<Text> text_;
+    std::shared_ptr<PriceController> priceController_;
     std::chrono::time_point<std::chrono::system_clock> lastWattHourUsed_;
 };
 

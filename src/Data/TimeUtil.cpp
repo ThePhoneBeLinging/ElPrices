@@ -6,6 +6,16 @@
 
 #include <chrono>
 
+std::string TimeUtil::getCurrentTimeAsDateString()
+{
+    auto now = getCurrentTime();
+    std::string day = std::to_string(now.tm_mday);
+    std::string month = std::to_string(now.tm_mon);
+    std::string year = std::to_string(now.tm_year);
+
+    return day + "." + month + "." + year;
+}
+
 tm TimeUtil::getCurrentTime()
 {
     auto now = std::chrono::system_clock::now();

@@ -18,7 +18,7 @@ public:
     ElPrices();
 private:
     std::shared_ptr<Text> currentPrice_;
-    std::unique_ptr<PriceController> priceController_;
+    std::shared_ptr<PriceController> priceController_;
     std::shared_ptr<UsageController> usageController_;
     std::shared_ptr<EngineBase> engineBase_;
     std::unique_ptr<MockUsageGetter> mockUsageGetter_;

@@ -11,9 +11,10 @@ ElPrices::ElPrices()
 {
     engineBase_ = std::make_shared<EngineBase>();
     currentPrice_ = std::make_shared<Text>("", 525, 150, 50);
-    usageController_ = std::make_shared<UsageController>(currentPrice_);
+    priceController_ = std::make_shared<PriceController>();
+    usageController_ = std::make_shared<UsageController>(currentPrice_,priceController_);
     engineBase_->registerText(currentPrice_);
-    priceController_ = std::make_unique<PriceController>();
+
     mockUsageGetter_ = std::make_unique<MockUsageGetter>(usageController_);
     engineBase_->launch();
 }
